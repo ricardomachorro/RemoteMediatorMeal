@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    id  ("kotlin-kapt")
 }
 
 android {
@@ -43,6 +45,10 @@ dependencies {
 
     val room_version ="2.8.4";
 
+    val pagging_lifecycle_compose_version = "2.10.0";
+
+    val paging_runtime = "3.0.1";
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,7 +65,13 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation("androidx.room:room-runtime:${room_version}")
+    implementation("androidx.room:room-ktx:${room_version}")
     implementation("androidx.room:room-paging:${room_version}")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("androidx.paging:paging-runtime:${paging_runtime}")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha20")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:${pagging_lifecycle_compose_version}")
+
+    kapt("androidx.room:room-compiler:$room_version")
 }
