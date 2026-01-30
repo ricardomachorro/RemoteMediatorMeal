@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.remotemediator.view.general.MealCard
 
 
 @Composable
@@ -26,9 +27,12 @@ fun MealScreen(viewModel: MainViewModel){
     val categories = listOf("Beef", "Chicken", "Dessert", "Pasta", "Seafood")
 
 
-    Column{
+    Column(
+        modifier = Modifier
+            .padding(vertical = 90.dp)
+    ){
 
-        LazyRow(modifier =  Modifier.padding(8.dp)) {
+        LazyRow(modifier =  Modifier.padding(vertical = 8.dp, horizontal = 24.dp)) {
 
               items(categories){
                     category ->
@@ -44,12 +48,14 @@ fun MealScreen(viewModel: MainViewModel){
               }
         }
 
-        LazyColumn {
+        LazyColumn(modifier =
+            Modifier.padding(vertical = 8.dp,horizontal = 15.dp)) {
             items(meals.itemCount){
                 index ->
                 val meal = meals[index]
                 meal?.let{
-                    Text(text = it.strMeal, modifier = Modifier.padding(16.dp))
+
+                    MealCard(it)
                 }
             }
         }
