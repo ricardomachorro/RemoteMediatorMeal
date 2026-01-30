@@ -14,6 +14,7 @@ import com.example.remotemediator.data.remote.TheMealDbApi
 import com.example.remotemediator.view.MainViewModelFactory
 import com.example.remotemediator.view.main.MainViewModel
 import com.example.remotemediator.view.main.MealScreen
+import com.example.remotemediator.view.other.AppContainer
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -21,15 +22,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val apiService = Retrofit.Builder()
-            .baseUrl(TheMealDbApi.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(TheMealDbApi::class.java)
+        val appContainer = AppContainer(this)
 
-        val database = AppDatabase.build(this)
 
-        val factory = MainViewModelFactory(apiService, database)
+        val factory = MainViewModelFactory(appContainer.retrofit, appContainer.database)
         val viewModel: MainViewModel by viewModels { factory }
 
 
