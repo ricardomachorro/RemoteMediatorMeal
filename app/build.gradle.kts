@@ -49,6 +49,8 @@ dependencies {
 
     val paging_runtime = "3.0.1";
 
+    val coil_version ="2.7.0";
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -72,6 +74,8 @@ dependencies {
     implementation ("androidx.paging:paging-runtime:${paging_runtime}")
     implementation("androidx.paging:paging-compose:1.0.0-alpha20")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:${pagging_lifecycle_compose_version}")
+
+    implementation("io.coil-kt:coil-compose:${coil_version}")
 
     kapt("androidx.room:room-compiler:$room_version")
 }

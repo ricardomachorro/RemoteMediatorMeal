@@ -11,6 +11,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.remotemediator.data.local.MealEntity
 
 
@@ -37,6 +38,13 @@ fun MealCard(entranceEntityMeal: MealEntity){
             Text(
                 fontSize = 10.sp,
                 text = entranceEntityMeal.category
+            )
+
+            AsyncImage(
+                model = entranceEntityMeal.strMealThumb,
+                contentDescription = "Sample image",
+                modifier = Modifier
+                    .fillMaxWidth()
             )
         }
     }
