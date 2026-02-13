@@ -1,12 +1,15 @@
 package com.example.remotemediator.view.main
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,41 +29,53 @@ fun MealScreen(viewModel: MainViewModel){
 
     val categories = listOf("Beef", "Chicken", "Dessert", "Pasta", "Seafood")
 
-
-    Column(
+    Surface(
         modifier = Modifier
-            .padding(vertical = 90.dp)
-    ){
+            .fillMaxSize()
 
-        LazyRow(modifier =  Modifier.padding(vertical = 8.dp, horizontal = 24.dp)) {
+    )
+    {
+        Column(
+            modifier = Modifier
+                .padding(
+                    vertical = 90.dp,
+                    horizontal = 30.dp)
 
-              items(categories){
-                    category ->
-                  Button(
-                      onClick = { viewModel.updateCategory(category) },
-                      modifier = Modifier.padding(4.dp),
-                      colors = ButtonDefaults.buttonColors(
-                          containerColor = if (category == selectedCategory) Color.DarkGray else Color.Gray
-                      )
-                  ) {
-                      Text(category)
-                  }
-              }
-        }
+            ){
 
-        LazyColumn(modifier =
-            Modifier.padding(vertical = 8.dp,horizontal = 15.dp)) {
-            items(meals.itemCount){
-                index ->
-                val meal = meals[index]
-                meal?.let{
+            LazyRow(modifier =  Modifier.padding(vertical = 8.dp, horizontal = 24.dp)) {
 
-                    MealCard(it)
+                items(categories){
+                        category ->
+                    Button(
+                        onClick = { viewModel.updateCategory(category) },
+                        modifier = Modifier.padding(4.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (category == selectedCategory) Color(0XFF22452b) else Color(0XFF4bad64)
+                        )
+                    ) {
+                        Text(category)
+                    }
                 }
             }
+
+            LazyColumn(modifier =
+                Modifier.padding(vertical = 8.dp,horizontal = 15.dp)) {
+                items(meals.itemCount){
+                        index ->
+                    val meal = meals[index]
+                    meal?.let{
+
+                        MealCard(it)
+                    }
+                }
+            }
+
         }
 
     }
+
+
 
 
 
