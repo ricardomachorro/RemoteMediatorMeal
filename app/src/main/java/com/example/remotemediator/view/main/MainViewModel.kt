@@ -31,6 +31,15 @@ class MainViewModel(private val api: TheMealDbApi, private val db: AppDatabase):
         _selectedCategory.value = newCategory
     }
 
+    suspend fun getCategories():List<String>{
+
+        var categoriesList =  mutableListOf("")
+
+        categoriesList = api.getCategories().meals?.map{ it.strCategory} as MutableList<String>
+
+        return categoriesList
+    }
+
 
 
 }
